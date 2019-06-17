@@ -17,9 +17,6 @@ $(`#scores`).html(`<p class="display-1">Scores Will Show Up Here!</p>
 <h2>Names cannot have more than 8 characters.</h2>
 <h2>Enjoy!</h2>`);
 
-// Creates BUtton to show rules
-$(`#rules`).html(`<button type="button" class="btn btn-primary">Primary</button>`);
-
 //Writes Buttons and Button's names to DOM
 function getPointText(){
     var i = 1;
@@ -275,29 +272,3 @@ $(`#personInput5`).keydown(function(event){
         $('#personButton5').trigger('click');
     }
 });
-
-/******************************** COMMENTED OUT CODE ********************************/
-
-// changeKey = () => {
-//     if (scores.hasOwnProperty('Demetre')) {
-//         scores['Teresa'] = scores['Demetre'];
-//         delete scores['Demetre'];
-//     }
-//     showScores();
-//     console.log(scores);
-//     return scores;
-// }
-
-
-// function showScores(){
-//     let keys = Object.keys(scores)
-//     let value = Object.values(scores)
-//     $( "div#scores" ).html('')
-//     keys.forEach(key => {
-//         value.forEach(value => {
-//             $( "div#scores" ).append(`
-//                 <p class="display-3-${key}">${key}: ${value}</p>
-//             `)
-//         })
-//     })
-// }
