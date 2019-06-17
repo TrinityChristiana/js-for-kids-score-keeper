@@ -1,0 +1,13 @@
+.everyone{
+text-align: center;
+}
+
+.validate {
+    color: red;
+    font-size: 1em;
+}
+
+#rules {
+    z-index: 3;
+    position: sticky;
+}
