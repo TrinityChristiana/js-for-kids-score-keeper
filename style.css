@@ -85,6 +85,11 @@
     overflow-x: hidden;
   }
 
+  .buttons-container {
+    display: block;
+    text-align: center;
+  }
+
   .buttons-container button {
     height: 70px;
   }
