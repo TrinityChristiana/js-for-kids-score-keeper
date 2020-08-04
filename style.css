@@ -1,35 +1,82 @@
 .app-container {
-  margin: 10px;
+  /* margin: 10px; */
   display: flex;
   flex-wrap: wrap;
 }
 
 .control-container {
+  padding: 15px;
   width: 40%;
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  overflow-x: auto;
 }
-.score-container {
+
+.scores-container {
+  padding: 15px;
   width: 60%;
+  display: flex;
+  flex-wrap: wrap;
+  height: 100vh;
+  overflow-x: auto;
+}
+
+.counter-container {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 300px;
+  margin: 10px;
+  min-height: 150px;
+  max-height: 350px;
+}
+.counter-container:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.counter-name {
+  background-color: rgb(212, 211, 211);
+  height: 50px;
+  font-size: 2rem;
+  text-align: center;
+  overflow-y: auto;
+}
+
+.counter-value {
+  font-size: 8rem;
+  text-align: center;
 }
 
 @media only screen and (max-width: 740px) {
   .control-container {
+    position: sticky;
+    background-color: white;
+    top: 0px;
     width: 100%;
     display: flex;
     flex-direction: row;
     overflow-y: auto;
+    height: auto;
   }
 
-  .score-container {
+  .scores-container {
     width: 100%;
+    height: auto;
+  }
+
+  .counter-container {
+    width: 100%;
+    min-height: 150px;
   }
 
   .person {
-    height: 200px;
+    height: 150px;
+    width: 150px;
   }
   .title {
     height: 80px;
+    overflow: scroll;
   }
 }
 
@@ -45,6 +92,8 @@
 
 .title {
   text-align: center;
+  width: 100%;
+  overflow-y: auto;
 }
 
 .buttons-container {
@@ -75,4 +124,16 @@
 .add-counter-container {
   display: flex;
   justify-content: center;
+  position: sticky;
+  right: 0px;
+  margin: 0px 20px;
+}
+
+#add-counter:hover {
+  background-color: #6c757c;
+}
+#add-counter {
+  width: 95px;
+  height: 100%;
+  background-color: white;
 }
