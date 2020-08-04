@@ -125,6 +125,9 @@
   flex-direction: column;
   padding: 10px;
 }
+.bottom-control {
+    background-color: white;
+}
 
 @media only screen and (max-width: 740px) {
   .control-container {
