@@ -50,6 +50,9 @@
 
 @media only screen and (max-width: 740px) {
   .control-container {
+    position: sticky;
+    background-color: white;
+    top: 0px;
     width: 100%;
     display: flex;
     flex-direction: row;
