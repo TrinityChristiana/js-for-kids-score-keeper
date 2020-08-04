@@ -99,6 +99,7 @@
 .buttons-container {
   display: flex;
   justify-content: center;
+  height: 55px;
 }
 
 .delete-container {
