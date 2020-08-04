@@ -26,6 +26,7 @@ const getPointText = () => {
   scoreArray.forEach(function ([name, score], i) {
     pointsDiv.innerHTML += `
       <div class="person">
+      
           <div class="input-group mb-3" id="input${i}" style="display:none">
               <div class="input-group-prepend" >
                   <button type="submit" class="btn btn-outline-secondary" value=${i} id="counterButton${i}">edit</button>
@@ -35,7 +36,11 @@ const getPointText = () => {
           </div>
           <div class="validate" id="inputValid${i}"></div>
           <div class="title-container">
-            <h2 class="title" id="counter${i}">${name} </h2> 
+          <div class="delete-container">
+          <span id="delete${i}" class="delete-button">Delete</span>
+        </div> 
+        
+        <h2 class="title" id="counter${i}">${name} </h2> 
           </div>
           <div class="buttons-container">
             <button type="submit" class="btn btn-outline-success" id="plus${i}">
@@ -45,17 +50,18 @@ const getPointText = () => {
             <h2>-1</h2>
             </button>
           </div>
-          <div class="delete-container">
-            <span id="delete${i}" class="delete-button">Delete</span>
-          </div>
           
       </div>
+      <hr/>
   `;
   });
 
-  pointsDiv.innerHTML += `<div class="add-counter-container">
-        <button type="submit" class="btn btn-outline-secondary" id="add-counter">Add Counter</button>
-    </div>`;
+  document.querySelector(
+    '#add-counter-here'
+  ).innerHTML = `</div><div class="add-counter-container">
+  <button type="submit" class="btn btn-outline-secondary" id="add-counter">Add Counter</button>
+</div>`;
+  pointsDiv;
 };
 
 // Show's Button's Name and hide's Name Input; Update's Names using User's Input; Validates Input; Updates Score Names;
