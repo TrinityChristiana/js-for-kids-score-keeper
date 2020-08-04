@@ -52,9 +52,12 @@ const getPointText = () => {
   `;
   });
 
-  pointsDiv.innerHTML += `</div><div class="add-counter-container">
-        <button type="submit" class="btn btn-outline-secondary" id="add-counter">Add Counter</button>
-    </div>`;
+  document.querySelector(
+    '#add-counter'
+  ).innerHTML = `</div><div class="add-counter-container">
+  <button type="submit" class="btn btn-outline-secondary" id="add-counter">Add Counter</button>
+</div>`;
+  pointsDiv;
 };
 
 // Show's Button's Name and hide's Name Input; Update's Names using User's Input; Validates Input; Updates Score Names;
