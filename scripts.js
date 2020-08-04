@@ -10,10 +10,15 @@ const pointsDiv = document.querySelector('#points');
 
 // Writes Welcome message
 scoreDiv.innerHTML = `
+    <div>
     <p class="display-1">Counters Will Show Up Here!</p>
-  <h2>Click on a name to edit it</h2>
-  <h2>Scores can not go less than zero </h2>
-  <h2>Enjoy!</h2>
+    </br>
+    <h2>Click on a name to edit it</h2>
+    </br>    
+    <h2>Scores can not go less than zero </h2>
+    </br>    
+    <h2>Enjoy!</h2>
+    </div>
   `;
 //Writes Buttons and Button's names to DOM
 const getPointText = () => {
