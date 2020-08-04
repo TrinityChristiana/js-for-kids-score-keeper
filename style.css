@@ -71,6 +71,7 @@
     width: 100%;
     display: flex;
     flex-direction: row;
+    margin: 0px 100px 0 0px;
   }
 
   .scores-container {
