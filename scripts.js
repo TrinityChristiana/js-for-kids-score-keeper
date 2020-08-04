@@ -17,37 +17,44 @@ const getPointText = () => {
   pointsDiv.innerHTML = '';
   scoreArray.forEach(function ([name, score], i) {
     pointsDiv.innerHTML += `
-      <div class="friend">
+      <div class="person">
           <div class="input-group mb-3" id="input${i}" style="display:none">
               <div class="input-group-prepend" >
-                  <button type="submit" class="btn btn-outline-secondary" value=${i} id="personButton${i}">edit</button>
+                  <button type="submit" class="btn btn-outline-secondary" value=${i} id="counterButton${i}">edit</button>
               </div>
-              <input type="text" id="personInput${i}" class="form-control" placeholder="" aria-label="name" aria-describedby="button-addon1">
+              <input type="text" id="counterInput${i}" class="form-control" placeholder="" aria-label="name" aria-describedby="button-addon1">
           
           </div>
           <div class="validate" id="inputValid${i}"></div>
-          <h2 id="person${i}">     
-          ${name} </h2> 
-          <button type="submit" class="btn btn-outline-success" id="plus${i}">
-              <h2>+1</h2>
-          </button>
-          <button type="submit" class="btn btn-outline-danger" id="minus${i}" disabled>
-              <h2>-1</h2>
-          </button>
-        <p id="delete${i}" class="delete-button">Delete</p>
+          <div class="title-container">
+            <h2 class="title" id="counter${i}">${name} </h2> 
+          </div>
+          <div class="buttons-container">
+            <button type="submit" class="btn btn-outline-success" id="plus${i}">
+            <h2>+1</h2>
+            </button>
+            <button type="submit" class="btn btn-outline-danger" id="minus${i}" disabled>
+            <h2>-1</h2>
+            </button>
+          </div>
+          <div class="delete-container">
+            <span id="delete${i}" class="delete-button">Delete</span>
+          </div>
           
       </div>
   `;
   });
 
   pointsDiv.innerHTML +=
-    '<button type="submit" class="btn btn-outline-secondary" id="add-counter">Add Person</button>';
+    `<div class="add-counter-container">
+        <button type="submit" class="btn btn-outline-secondary" id="add-counter">Add Counter</button>
+    </div>`;
 };
 
 // Show's Button's Name and hide's Name Input; Update's Names using User's Input; Validates Input; Updates Score Names;
-const getNameInput = (person, content, input) => {
-  const name = document.querySelector(person).value;
-  const i = person.slice(-1);
+const getNameInput = (counter, content, input) => {
+  const name = document.querySelector(counter).value;
+  const i = counter.slice(-1);
   const validationDiv = document.querySelector(`#inputValid${i}`);
   const inputDiv = document.querySelector(input);
   const contentDiv = document.querySelector(content);
@@ -86,19 +93,19 @@ const showInput = (content, input) => {
 const addEventListeners = () => {
   scoreArray.forEach(function ([name, score], i) {
     const nameInputFunction = () =>
-      getNameInput(`#personInput${i}`, `#person${i}`, `#input${i}`);
+      getNameInput(`#counterInput${i}`, `#counter${i}`, `#input${i}`);
 
     // Edit Name Button
-    const editButtonDiv = document.querySelector(`#personButton${i}`);
+    const editButtonDiv = document.querySelector(`#counterButton${i}`);
     editButtonDiv.addEventListener('click', () => {
       nameInputFunction();
     });
 
     // Shows Input to Edit Name
-    const personNameDiv = document.querySelector(`#person${i}`);
-    const nameInputDIv = document.querySelector(`#personInput${i}`);
-    personNameDiv.addEventListener('click', () => {
-      showInput(`#person${i}`, `#input${i}`);
+    const counterNameDiv = document.querySelector(`#counter${i}`);
+    const nameInputDIv = document.querySelector(`#counterInput${i}`);
+    counterNameDiv.addEventListener('click', () => {
+      showInput(`#counter${i}`, `#input${i}`);
       nameInputDIv.focus();
     });
 
