@@ -10,6 +10,7 @@
   flex-direction: column;
   height: 100vh;
   overflow-x: scroll;
+  /* align-content: center; */
 }
 
 .control-container-points {
@@ -21,6 +22,11 @@
   justify-content: center;
   /* position: -webkit-sticky; */
   /* height: 190px; */
+}
+
+.title-container {
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 .scores-container {
@@ -85,13 +91,16 @@
     overflow-x: hidden;
   }
 
-  .buttons-container {
-    display: block;
-    text-align: center;
+  .title-container {
+    flex-direction: column;
   }
 
+  /* .buttons-container {
+    height: 100px;
+  } */
+
   .buttons-container button {
-    height: 70px;
+    height: 60px;
   }
 
   .control-container-points {
@@ -160,6 +169,7 @@
 .delete-container {
   text-align: center;
   margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .delete-button {
@@ -174,5 +184,5 @@
 .person {
   display: flex;
   flex-direction: column;
-  margin: 10px;
+  padding: 10px;
 }
