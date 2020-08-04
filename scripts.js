@@ -36,9 +36,7 @@ const getPointText = () => {
           </div>
           <div class="validate" id="inputValid${i}"></div>
           <div class="title-container">
-          <div class="delete-container">
-          <span id="delete${i}" class="delete-button">Delete</span>
-        </div> 
+          
         
         <h2 class="title" id="counter${i}">${name} </h2> 
           </div>
@@ -50,7 +48,9 @@ const getPointText = () => {
             <h2>-1</h2>
             </button>
           </div>
-          
+          <div class="delete-container">
+          <span id="delete${i}" class="delete-button">Delete</span>
+        </div> 
       </div>
       <hr/>
   `;
