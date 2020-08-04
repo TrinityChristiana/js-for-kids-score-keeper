@@ -53,7 +53,7 @@ const getPointText = () => {
   });
 
   document.querySelector(
-    '#add-counter'
+    '#add-counter-here'
   ).innerHTML = `</div><div class="add-counter-container">
   <button type="submit" class="btn btn-outline-secondary" id="add-counter">Add Counter</button>
 </div>`;
