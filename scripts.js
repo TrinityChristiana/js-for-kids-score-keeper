@@ -48,12 +48,11 @@ const getPointText = () => {
           <div class="delete-container">
             <span id="delete${i}" class="delete-button">Delete</span>
           </div>
-          
       </div>
   `;
   });
 
-  pointsDiv.innerHTML += `<div class="add-counter-container">
+  pointsDiv.innerHTML += `</div><div class="add-counter-container">
         <button type="submit" class="btn btn-outline-secondary" id="add-counter">Add Counter</button>
     </div>`;
 };
