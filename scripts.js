@@ -1,25 +1,20 @@
 //This holds the default names and scores when the DOM is refreshed
-const scoreArray = [
+let scoreArray = [
   ['Team 1', 0],
   ['Team 2', 0],
+  ['Team 3', 0],
 ];
+
+const updateLocalStorage = array => {
+  window.localStorage.setItem('savedScores', JSON.stringify(array));
+};
 
 // Assigns keys of default object to an array
 const scoreDiv = document.querySelector('#scores');
 const pointsDiv = document.querySelector('#points');
 
 // Writes Welcome message
-scoreDiv.innerHTML = `
-    <div>
-    <p class="display-1">Counters Will Show Up Here!</p>
-    </br>
-    <h2>Click on a name to edit it</h2>
-    </br>    
-    <h2>Scores can not go less than zero </h2>
-    </br>    
-    <h2>Enjoy!</h2>
-    </div>
-  `;
+
 //Writes Buttons and Button's names to DOM
 const getPointText = () => {
   pointsDiv.innerHTML = '';
@@ -36,9 +31,7 @@ const getPointText = () => {
           </div>
           <div class="validate" id="inputValid${i}"></div>
           <div class="title-container">
-          <div class="delete-container">
-          <span id="delete${i}" class="delete-button">Delete</span>
-        </div> 
+          
         
         <h2 class="title" id="counter${i}">${name} </h2> 
           </div>
@@ -46,11 +39,15 @@ const getPointText = () => {
             <button type="submit" class="btn btn-outline-success" id="plus${i}">
             <h2>+1</h2>
             </button>
-            <button type="submit" class="btn btn-outline-danger" id="minus${i}" disabled>
+            <button type="submit" class="btn btn-outline-danger" id="minus${i}" ${
+      score === 0 ? 'disabled' : ''
+    }>
             <h2>-1</h2>
             </button>
           </div>
-          
+          <div class="delete-container">
+          <span id="delete${i}" class="delete-button">Delete</span>
+        </div> 
       </div>
       <hr/>
   `;
@@ -77,12 +74,12 @@ const getNameInput = (counter, content, input) => {
     scoreArray[i][0] = name;
     inputDiv.style.display = 'none';
     contentDiv.style.display = 'block';
-    showScores();
   } else {
     inputDiv.style.display = 'none';
     contentDiv.style.display = 'block';
-    showScores();
   }
+  updateLocalStorage(scoreArray);
+  showScores();
 };
 
 // Writes Score's Names and scores to DOM
@@ -140,42 +137,104 @@ const addEventListeners = () => {
     // Add one Point Button
     plusButton.addEventListener('click', () => {
       scoreArray[i][1] += 1;
-      console.log(scoreArray[i][1]);
-      showScores();
+      runIt();
       if (scoreArray[i][1] > 0) {
         minusButton.disabled = false;
       }
+      updateLocalStorage(scoreArray);
     });
 
     //Minus one Point Button
     minusButton.addEventListener('click', () => {
       scoreArray[i][1] -= 1;
-      showScores();
+      runIt();
       if (scoreArray[i][1] == 0) {
         minusButton.disabled = true;
       }
+      updateLocalStorage(scoreArray);
     });
 
     deleteButton.addEventListener('click', () => {
       if (window.confirm(`Are you sure you want to delete ${name}`)) {
         scoreArray.splice(i, 1);
         runIt();
-        showScores();
+        updateLocalStorage(scoreArray);
       }
     });
+  });
+  const restartButton = document.querySelector(`#restart-scores`);
+
+  restartButton.addEventListener('click', () => {
+    if (window.confirm(`Are you sure you want to reset your scores?`)) {
+      scoreArray = [
+        ['Team 1', 0],
+        ['Team 2', 0],
+        ['Team 3', 0],
+      ];
+      updateLocalStorage([
+        ['Team 1', 0],
+        ['Team 2', 0],
+        ['Team 3', 0],
+      ]);
+      runIt();
+    }
   });
 
   const addCounterBtn = document.querySelector(`#add-counter`);
   addCounterBtn.addEventListener('click', () => {
-    scoreArray.push(['new counter', 0]);
+    scoreArray.push(['New Team', 0]);
     runIt();
-    showScores();
+    updateLocalStorage(scoreArray);
+  });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var elems = document.querySelectorAll('.fixed-action-btn');
+    var instances = M.FloatingActionButton.init(elems, {
+      direction: 'left',
+    });
   });
 };
 
-const runIt = () => {
+const getSavedData = () => {
+  const savedScores = JSON.parse(
+    window.localStorage.getItem('savedScores', null)
+  );
+  console.log(savedScores);
+  if (savedScores) {
+    scoreArray = savedScores;
+    scoreDiv.innerHTML = `
+      <div>
+      <p class="display-4">Welcome Back!</p>
+      <p class="display-1">Counters Will Show Up Here!</p>
+      </br>
+      <h2>Click on a name to edit it</h2>
+      </br>    
+      <h2>Score values can not go below 0</h2>
+      </br>    
+      <h2>Enjoy!</h2>
+      </div>
+    `;
+  } else {
+    scoreDiv.innerHTML = `
+      <div>
+      <p class="display-1">Counters Will Show Up Here!</p>
+      </br>
+      <h2>Click on a name to edit it</h2>
+      </br>    
+      <h2>Score values can not go below 0</h2>
+      </br>    
+      <h2>Enjoy!</h2>
+      </div>
+    `;
+    updateLocalStorage(scoreArray);
+  }
+};
+getSavedData();
+
+const runIt = (showScore = true) => {
+  showScore && showScores();
   getPointText();
   addEventListeners();
 };
 
-runIt();
+runIt(false);
