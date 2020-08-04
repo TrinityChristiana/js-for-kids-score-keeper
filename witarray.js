@@ -147,7 +147,6 @@ let scores = {
   
     const addCounterBtn = document.querySelector(`#add-counter`);
     addCounterBtn.addEventListener('click', () => {
-      console.log('clicked it');
     });
   };
   

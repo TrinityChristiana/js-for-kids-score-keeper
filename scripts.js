@@ -162,23 +162,6 @@ const addEventListeners = () => {
       }
     });
   });
-  const restartButton = document.querySelector(`#restart-scores`);
-
-  restartButton.addEventListener('click', () => {
-    if (window.confirm(`Are you sure you want to reset your scores?`)) {
-      scoreArray = [
-        ['Team 1', 0],
-        ['Team 2', 0],
-        ['Team 3', 0],
-      ];
-      updateLocalStorage([
-        ['Team 1', 0],
-        ['Team 2', 0],
-        ['Team 3', 0],
-      ]);
-      runIt();
-    }
-  });
 
   const addCounterBtn = document.querySelector(`#add-counter`);
   addCounterBtn.addEventListener('click', () => {
@@ -195,11 +178,27 @@ const addEventListeners = () => {
   });
 };
 
+const restartButton = document.querySelector(`#restart-scores`);
+restartButton.addEventListener('click', () => {
+  if (window.confirm(`Are you sure you want to reset your scores?`)) {
+    scoreArray = [
+      ['Team 1', 0],
+      ['Team 2', 0],
+      ['Team 3', 0],
+    ];
+    updateLocalStorage([
+      ['Team 1', 0],
+      ['Team 2', 0],
+      ['Team 3', 0],
+    ]);
+    runIt();
+  }
+});
+
 const getSavedData = () => {
   const savedScores = JSON.parse(
     window.localStorage.getItem('savedScores', null)
   );
-  console.log(savedScores);
   if (savedScores) {
     scoreArray = savedScores;
     scoreDiv.innerHTML = `
